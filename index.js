@@ -3,10 +3,21 @@ const mongo = require("./services/mongo_db.js")
 require('dotenv').config()
 app = express();
 
+const redis = require('./services/redis')
+
+
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
+
 app.get("/", (req, res) => {
   res.status(200);
   res.send("Welcome to root URL of Server");
 });
+
+const v1_auth = require('./routes/v1/auth')
+app.use("/v1",v1_auth)
+
 
 app.listen(process.env.PORT, (error) => {
   if (error) {
