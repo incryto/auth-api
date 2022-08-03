@@ -1,4 +1,4 @@
-// require('dotenv').config();
+require('dotenv').config();
 var Redis = require('ioredis');
 
 const redis = new Redis({

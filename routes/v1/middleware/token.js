@@ -36,6 +36,9 @@ function validateToken(req,res,next){
         jwt.verify(token, process.env.JWT_SECRET_KEY, (err, user) => {
             if (err) return res.status(200).json({ "response_code": 401, "message": "Invalid token", "response" : null })
                   req.token = token
+                  var decodedToken = jwt.decode(token)
+                  req.user_id = decodedToken["user_id"],
+                  req.user_email = decodedToken["user_email"]
                   next()
           })
     }}catch(err){

@@ -10,9 +10,9 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 
+
 app.get("/", (req, res) => {
-  res.status(200);
-  res.send("Welcome to root URL of Server");
+  res.status(200).send("Welcome to root auth api services");
 });
 
 const v1_auth = require('./routes/v1/auth')

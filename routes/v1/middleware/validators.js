@@ -42,6 +42,27 @@ function emailOtpValidator(req, res, next) {
   }
 }
 
+const schemaStepOne={
+  type:"object",
+  properties:{
+    name:{
+      type:"string",maxLength:50,minLength:4
+    },
+    mobile:{
+      type:"string",minLength:10,maxLength:12
+    },
+  },
+  required:["name","mobile"]
+}
+const validateSchemaStepOne = ajv.compile(schemaStepOne)
+function schemaOneValidation(req, res, next) {
+  const valid = validateSchemaStepOne(req.body)
+  if (!valid) {
+    return res.status(200).json({ "response_code": 400, "message": "Data validation error", "response" : null })
+  } else {
+    next();
+  }
+}
 
 
 
@@ -51,5 +72,6 @@ function emailValidator(email){
 
 module.exports = {
   loginValidator,
-  emailOtpValidator
+  emailOtpValidator,
+  schemaOneValidation
 };

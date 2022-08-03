@@ -23,7 +23,7 @@ function validateUserExist(req, res, next) {
       console.log(err);
       return res
         .status(200)
-        .json({ response_code: 500, message: resp[500], response: null });
+        .json({ response_code: 500, message:"Internal server error", response: null });
     });
 }
 
@@ -75,7 +75,34 @@ function createUserIfNotExist(req, res, next) {
 }
 
 
+function setProfileCompletion(req,res,next){
+  try{
+      user.findByIdAndUpdate(req.user_id,{
+        "$set":{
+          name:req.body.name,
+          number:req.body.mobile,
+          profile_completion:1
+        }
+      },(err,reply)=>{
+        if(err){
+          throw new Error("Error while updating profile")
+
+        }else{
+          next()
+        }
+      })
+  }catch(e){
+    console.log(e)
+    res.status(200).json({
+      "response_code":500,
+      "message":"Internal server error",
+      "response":null
+    })
+  }
+}
+
 module.exports = {
     createUserIfNotExist,
     validateUserExist,
+    setProfileCompletion
   };
