@@ -13,6 +13,7 @@ const schemaLogin = {
 }
 const validateEmail = ajv.compile(schemaLogin)
 function loginValidator(req, res, next) {
+  console.log(req.body)
   const valid = validateEmail(req.body) && emailValidator(req.body.email)
   if (!valid) {
     return res.status(200).json({ "response_code": 400, "message":"data validation error", "response" : null })
@@ -56,6 +57,7 @@ const schemaStepOne={
 }
 const validateSchemaStepOne = ajv.compile(schemaStepOne)
 function schemaOneValidation(req, res, next) {
+  
   const valid = validateSchemaStepOne(req.body)
   if (!valid) {
     return res.status(200).json({ "response_code": 400, "message": "Data validation error", "response" : null })
