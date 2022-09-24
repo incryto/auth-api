@@ -16,6 +16,9 @@ const user = new mongoose.Schema({
   number:{
     type:String,
   },
+  current_price:{
+    type:Number
+  },
   profile_completion: {
     type: Number,
     default: 0,
@@ -28,6 +31,7 @@ const user = new mongoose.Schema({
     type: Array,
     default: [],
   },
+
   api_key: {
     type: String,
   },
@@ -37,10 +41,6 @@ const user = new mongoose.Schema({
   creation_ip: {
     type: String,
   },
-  profile:{
-    type:String,
-    default:"https://i.pinimg.com/736x/f0/ce/2b/f0ce2bb845800dbf95f57fe928166d83.jpg"
-  }
 });
 
 module.exports = mongoose.model("Users", user);
