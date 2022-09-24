@@ -21,7 +21,7 @@ const v1_auth = require('./routes/v1/auth')
 app.use("/v1",v1_auth)
 
 
-app.listen(process.env.PORT, '192.168.1.98',(error) => {
+app.listen(process.env.PORT,(error) => {
   if (error) {
     console.log(error);
   }else{

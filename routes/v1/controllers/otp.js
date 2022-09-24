@@ -11,7 +11,7 @@ const generateOtp = function () {
 async function sendOtp(email, otp) {
   console.log(email);
   console.log(otp);
-  const res = await axios.post(`http://192.168.1.98:8085/v1/send/otp`, {
+  const res = await axios.post(`http://localhost:8085/v1/send/otp`, {
     email: email,
     otp: otp,
   });

@@ -25,6 +25,8 @@ function createToken(req,res,next){
 }
 
 function validateToken(req,res,next){
+    console.log(req.body)
+    console.log(req.headers.authorization)
     try{token =req.headers.authorization && req.headers.authorization.split(" ")[1]
     if(token==null){
         return res.status(200).send({

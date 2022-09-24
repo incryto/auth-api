@@ -17,7 +17,7 @@ router.post("/login", loginValidator,createUserIfNotExist,createOtp, async (req,
 
 
 router.post("/otp/verify",emailOtpValidator,validateUserExist,validateOTP,createToken, (req, res) => {
-  res.status(200).json({"response_code":200,"message":"Login successful","response":{"token":req.token,"completion":req.temp_user.profile_completion}})
+  res.status(200).json({"response_code":200,"message":"Login successful","response":{"token":req.token,"user_id":req.temp_user._id ,"completion":req.temp_user.profile_completion}})
 });
 
 router.post('/profile/step-one/',validateToken,schemaOneValidation,setProfileCompletion,(req,res)=>{
